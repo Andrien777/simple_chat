@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Simple chat</title>
+    <style>
+        .msg {
+            background-color: gainsboro;
+            border: 1px solid black;
+            margin: 10px;
+            padding-left: 5px;
+            border-radius: 3px;
+            width: 80%;
+            align-items: start;
+        }
+        .my {
+            background-color: #aaa;
+            border: 1px solid black;
+            margin: 10px 10px 10px 20%;
+            padding-left: 5px;
+            border-radius: 3px;
+            width: 80%;
+            align-items: start;
+        }
+    </style>
+    <script>
+        setTimeout(function(){
+            window.location.reload();
+            window.scrollTo(0, document.body.scrollHeight);
+        }, 20000);
+    </script>
+</head>
+<body>
+    {% for message in messages %}
+        {% if message.from_user == ip %}
+            <div class="my">
+                <p><strong>{{  message.from_user }}</strong></p>
+                <p>{{ message.text }}</p>
+            </div>
+        {% else %}
+            <div class="msg">
+                <p><strong>{{  message.from_user }}</strong></p>
+                <p>{{ message.text }}</p>
+            </div>
+        {% endif %}
+    {% endfor %}
+    <div class="new">
+        <form action="{% url 'new' %}" method="post">
+            {% csrf_token %}
+            <fieldset>
+                <textarea id="text" name="text" maxlength="500" rows="10" cols="50" required>
+                </textarea>
+            </fieldset>
+            <input type="submit" value="Send">
+        </form>
+    </div>
+    <script>window.scrollTo(0, document.body.scrollHeight);</script>
+</body>
+</html>
