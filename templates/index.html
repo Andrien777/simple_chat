@@ -23,12 +23,6 @@
             align-items: start;
         }
     </style>
-    <script>
-        setTimeout(function(){
-            window.location.reload();
-            window.scrollTo(0, document.body.scrollHeight);
-        }, 20000);
-    </script>
 </head>
 <body>
     {% for message in messages %}
@@ -55,5 +49,14 @@
         </form>
     </div>
     <script>window.scrollTo(0, document.body.scrollHeight);</script>
+    <script>
+        input = document.getElementById('text')
+        setTimeout(function() {
+            if (document.activeElement != input) {
+                window.location.reload();
+                window.scrollTo(0, document.body.scrollHeight);
+            }
+        }, 20000);
+    </script>
 </body>
 </html>
