@@ -14,7 +14,6 @@ def get_client_ip(request):
 
 
 def wordfilter(text: str):
-    text = re.sub('!{11,}', '!я идиот убейте меня кто-нибудь!!', text)
     swearing_pattern = r''.join((
         r'\w{0,5}[хx]([хx\s\!@#\$%\^&*+-\|\/]{0,6})',
         r'[уy]([уy\s\!@#\$%\^&*+-\|\/]{0,6})[ёiлeеюийя]\w{0,7}|\w{0,6}[пp]',
